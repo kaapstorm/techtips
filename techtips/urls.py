@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     url(r'^$', TipListView.as_view(), name='tip_list_view'),
     url(r'^tip/(?P<slug>[\w\-_]+)/$', TipDetailView.as_view(), 
         name='tip_detail_view'),
+    url(r'^tip/(?P<slug>[\w\-_]+)/ajax/$', TipDetailView.as_view(type='ajax'), 
+        name='tip_detail_ajax_view'),
     (r'^new/$', add_tip),
     
     (r'^feed/$', TechTipsFeed()),

@@ -14,7 +14,7 @@ class TipListView(ListView):
     context_object_name = 'tip'
     
     def get_queryset(self):
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated(): # TODO: and is_manager()
             return Tip.objects.all()
         return Tip.objects.filter(is_published=True)
 
@@ -22,8 +22,15 @@ class TipListView(ListView):
 class TipDetailView(DetailView):
     context_object_name = 'tip'
     
+    # TODO: Is this the best way to do this? In __init__()?
+    def __init__(self, *args, **kwargs):
+        super(TipDetailView, self).__init__(*args, **kwargs)
+        if self.type == 'ajax': 
+            # Use AJAX template if instance was passed type='ajax'
+            self.template_name = 'tips/tip_detail_ajax.html'
+    
     def get_queryset(self):
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated(): # TODO: and is_manager()
             return Tip.objects.all()
         return Tip.objects.filter(is_published=True)
 

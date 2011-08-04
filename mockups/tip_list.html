@@ -7,11 +7,22 @@
         <title>Tech Tip of the Day</title>
         <meta name="viewport" content="width=device-width; initial-scale=1.0" />
         
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        
+        <script type="text/javascript" src="../techtips/media/js/jquery-1.6.2.min.js"></script>
+        <!-- and HTML5inator -->
+        
+        <!-- TODO: Link to feed -->
+        
         <link rel="stylesheet" type="text/css" media="screen" 
               href="../techtips/media/css/default.css" />
         <link rel="stylesheet" type="text/css" 
               media="screen and (max-device-width: 1024px) and (orientation: portrait)" 
-              href="../techtips/media/css/ipad.css" />
+              href="../techtips/media/css/ipad-portrait.css" />
+        <link rel="stylesheet" type="text/css" 
+              media="screen and (max-device-width: 1024px) and (orientation: landscape)" 
+              href="../techtips/media/css/ipad-landscape.css" />
         <link rel="stylesheet" type="text/css" 
               media="screen and (max-device-width: 533px)" 
               href="../techtips/media/css/htc_desire.css" />
@@ -20,6 +31,29 @@
               href="../techtips/media/css/iphone.css" />
         <link rel="stylesheet" type="text/css" media="handheld" 
               href="../techtips/media/css/handheld.css" />
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // We have JavaScript.
+                
+                // Change anchors to AJAX
+                $('div.list_item > a').each(function () {
+                    $(this).href = "#";
+                    $(this).click(function () {
+                        // Load list item content asynchronously
+                        $(':parent > div.list_item_content').load(
+                            '/url/to/list/item/ajax/'
+                        );
+                    });
+                });
+                
+                // Remove nav#bottom_pagination
+                // TODO: ...
+                
+                // Add async content loader at bottom of page
+                // TODO: ...
+            });
+        </script>
     </head>
     <body>
         <div>
@@ -27,32 +61,29 @@
                 <h1>Tech Tip of the Day</h1>
             </header>
             
+            <nav id="top_pagination">
+                <ul>
+                    <li>[ |&lt;&lt; ]</li>
+                    <li>[ &lt; ]</li>
+                    <li>[ 3 ]</li>
+                    <li>[ 4 ]</li>
+                    <li>[ 5 ]</li>
+                    <li>[ &gt; ]</li>
+                    <li>[ &gt;&gt;| ]</li>
+                </ul>
+            </nav>
+            
             <div id="list_items">
                 <!-- <list_item> -->
                 <div id="how_cool_are_generators_item"
                      class="list_item">
-                    <a href="#"
-                       onclick="document.getElementById('how_cool_are_generators_content').style.display = 'block'; return false;">
+                    <a href="tip_detail.html">
                         <h2>How cool are generators?</h2>
                         <h3>Friday 13 Jan 2013</h3>
                     </a>
                     
                     <div id="how_cool_are_generators_content" 
-                         class="list_item_content"
-                         style="display: none;">
-                        <!-- this bit to be fetched asynchronously -->
-                        <p>OMG!! Generators are like the freekin bog's dollocks!</p>
-                        
-                        <p>Like, check it out:</p>
-                        
-                        <pre>
-&gt;&gt;&gt; a = [1, 2, 3, 4, 5]
-&gt;&gt;&gt; b = (2*x for x in a)
-&gt;&gt;&gt; b.next()
-2
-                        </pre>
-                        
-                        <p>Seriously, like, WOW!!!one!11!1!eleven!!!</p>
+                         class="list_item_content">
                     </div>
                 </div>
                 <!-- </list_item> -->
@@ -102,8 +133,21 @@
                     </div>
                 </div>
                 
-                <!-- fetch more asychronously -->
+                <!-- Fetch more asychronously -->
             </div>
+            
+            <nav id="bottom_pagination">
+                <!-- Hide if JavaScript available -->
+                <ul>
+                    <li>[ |&lt;&lt; ]</li>
+                    <li>[ &lt; ]</li>
+                    <li>[ 3 ]</li>
+                    <li>[ 4 ]</li>
+                    <li>[ 5 ]</li>
+                    <li>[ &gt; ]</li>
+                    <li>[ &gt;&gt;| ]</li>
+                </ul>
+            </nav>
             
             <footer>
                 <p>&copy; Copyright 2011 by ronway.co.za</p>
