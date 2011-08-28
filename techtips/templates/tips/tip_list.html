@@ -1,1 +1,50 @@
 {% extends "base.html" %}
+{% block content %}
+
+<!-- TODO: ...
+<nav id="top_pagination" class="pagination">
+    <ul>
+        <li>[ |&lt;&lt; ]</li>
+        <li>[ &lt; ]</li>
+        <li>[ 3 ]</li>
+        <li>[ 4 ]</li>
+        <li>[ 5 ]</li>
+        <li>[ &gt; ]</li>
+        <li>[ &gt;&gt;| ]</li>
+    </ul>
+</nav>
+-->
+
+<div id="list_items">
+    {% for tip in tip_list %}
+    <div class="list_item">
+        
+        <h2>
+            <a href="{{ tip.get_absolute_url }}">{{ tip.title }}</a>
+        </h2>
+        <h3>{{ tip.created_at|date:"l j M Y" }} | {{ tip.created_by }}</h3>
+        
+        <div class="list_item_content">
+        </div>
+    </div>
+    
+    {% endfor %}
+    
+    <!-- Fetch more asychronously -->
+</div>
+
+<!-- TODO: ...
+<nav id="bottom_pagination" class="pagination">
+    <ul>
+        <li>[ |&lt;&lt; ]</li>
+        <li>[ &lt; ]</li>
+        <li>[ 3 ]</li>
+        <li>[ 4 ]</li>
+        <li>[ 5 ]</li>
+        <li>[ &gt; ]</li>
+        <li>[ &gt;&gt;| ]</li>
+    </ul>
+</nav>
+-->
+
+{% endblock %}

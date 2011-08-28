@@ -4,8 +4,14 @@ from techtips.tips.models import Tip
 
 
 class TipForm(ModelForm):
-    # TODO: Populate slug on validate
-    # TODO: Validate slug unique
+    """This form is used by site visitors to submit tips
+    """
     class Meta:
         model = Tip
-        exclude = ('is_published', 'slug')
+        fields = ('title', 'content_markdown')
+    
+    def clean_title(self):
+        # TODO: Populate slug 
+        # TODO: Validate slug unique
+        pass
+    

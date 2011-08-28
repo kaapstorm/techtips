@@ -11,7 +11,7 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         
         <script type="text/javascript" src="../techtips/media/js/jquery-1.6.2.min.js"></script>
-        <!-- and HTML5inator -->
+        <script type="text/javascript" src="../techtips/media/js/modernizr-2.0.6.js"></script>
         
         <!-- TODO: Link to feed -->
         
@@ -37,7 +37,7 @@
                 // We have JavaScript.
                 
                 // Change anchors to AJAX
-                $('div.list_item > a').each(function () {
+                $('div.list_item > h2 > a').each(function () {
                     $(this).href = "#";
                     $(this).click(function () {
                         // Load list item content asynchronously
@@ -77,10 +77,9 @@
                 <!-- <list_item> -->
                 <div id="how_cool_are_generators_item"
                      class="list_item">
-                    <a href="tip_detail.html">
-                        <h2>How cool are generators?</h2>
-                        <h3>Friday 13 Jan 2013</h3>
-                    </a>
+                    
+                    <h2><a href="tip_detail.html">How cool are generators?</a></h2>
+                    <h3>Friday 13 Jan 2013</h3>
                     
                     <div id="how_cool_are_generators_content" 
                          class="list_item_content">
@@ -89,46 +88,36 @@
                 <!-- </list_item> -->
                 
                 <div class="list_item">
-                    <a href="#" onclick="return false;">
-                        <h2>Lorem ipsum dolor sit amet</h2>
-                        <h3>Friday 13 Jan 2013</h3>
-                    </a>
+                    <h2><a href="#" onclick="return false;">Lorem ipsum dolor sit amet</a></h2>
+                    <h3>Friday 13 Jan 2013</h3>
                     <div class="list_item_content">
                     </div>
                 </div>
                 
                 <div class="list_item">
-                    <a href="#" onclick="return false;">
-                        <h2>Lorem ipsum dolor sit amet</h2>
-                        <h3>Friday 13 Jan 2013</h3>
-                    </a>
+                    <h2><a href="#" onclick="return false;">Lorem ipsum dolor sit amet</a></h2>
+                    <h3>Friday 13 Jan 2013</h3>
                     <div class="list_item_content">
                     </div>
                 </div>
                 
                 <div class="list_item">
-                    <a href="#" onclick="return false;">
-                        <h2>Lorem ipsum dolor sit amet</h2>
-                        <h3>Friday 13 Jan 2013</h3>
-                    </a>
+                    <h2><a href="#" onclick="return false;">Lorem ipsum dolor sit amet</a></h2>
+                    <h3>Friday 13 Jan 2013</h3>
                     <div class="list_item_content">
                     </div>
                 </div>
                 
                 <div class="list_item">
-                    <a href="#" onclick="return false;">
-                        <h2>Lorem ipsum dolor sit amet</h2>
-                        <h3>Friday 13 Jan 2013</h3>
-                    </a>
+                    <h2><a href="#" onclick="return false;">Lorem ipsum dolor sit amet</a></h2>
+                    <h3>Friday 13 Jan 2013</h3>
                     <div class="list_item_content">
                     </div>
                 </div>
                 
                 <div class="list_item">
-                    <a href="#" onclick="return false;">
-                        <h2>Lorem ipsum dolor sit amet</h2>
-                        <h3>Friday 13 Jan 2013</h3>
-                    </a>
+                    <h2><a href="#" onclick="return false;">Lorem ipsum dolor sit amet</a></h2>
+                    <h3>Friday 13 Jan 2013</h3>
                     <div class="list_item_content">
                     </div>
                 </div>

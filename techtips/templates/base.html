@@ -2,34 +2,77 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-        Remove this if you use the .htaccess -->
+        <!-- Force latest IE rendering engine & Chrome Frame -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title>{% block title %}Tech Tip of the Day{% endblock %}</title>
-        <meta name="description" content="" />
+        
+        <meta name="description" content="Daily tips with an emphasis on Linux and Python" />
         <meta name="viewport" content="width=device-width; initial-scale=1.0" />
-        <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        
+        <!-- TODO: Replace favicon.ico & apple-touch-icon.png -->
+        <link rel="shortcut icon" href="{{ MEDIA_URL }}/favicon.ico" />
+        <link rel="apple-touch-icon" href="{{ MEDIA_URL }}/apple-touch-icon.png" />
+        
+        <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}/js/modernizr-2.0.6.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}/js/techtips.js"></script>
+        
+        <link rel="stylesheet" type="text/css" media="screen" 
+              href="{{ MEDIA_URL }}/css/default.css" />
+        <link rel="stylesheet" type="text/css" 
+              media="screen and (max-device-width: 1024px) and (orientation: portrait)" 
+              href="{{ MEDIA_URL }}/css/ipad-portrait.css" />
+        <link rel="stylesheet" type="text/css" 
+              media="screen and (max-device-width: 1024px) and (orientation: landscape)" 
+              href="{{ MEDIA_URL }}/css/ipad-landscape.css" />
+        <link rel="stylesheet" type="text/css" 
+              media="screen and (max-device-width: 533px)" 
+              href="{{ MEDIA_URL }}/css/htc_desire.css" />
+        <link rel="stylesheet" type="text/css" 
+              media="screen and (max-device-width: 480px)" 
+              href="{{ MEDIA_URL }}/css/iphone.css" />
+        <link rel="stylesheet" type="text/css" media="handheld" 
+              href="{{ MEDIA_URL }}/css/handheld.css" />
+              
+        <script type="text/javascript">
+        $(document).ready(function () {
+            // We have JavaScript.
+            
+            // Change anchors to AJAX
+            $('div.list_item > h2 > a').each(function () {
+                var original_href = $(this).attr('href'); 
+                $(this).attr('href', '#');
+                $(this).click(function () {
+                    // Load list item content asynchronously
+                    $(':parent > div.list_item_content').load(
+                        original_href + 'ajax/'
+                    );
+                    return false;
+                });
+            });
+            
+            // Remove pagination
+            //$('nav.pagination').remove();
+            
+            // Add async content loader at bottom of page
+            // TODO: ...
+        });
+        </script>
     </head>
     <body>
         <div>
             <header>
-                <h1>tip_list</h1>
+                {% block header %}
+                <h1>Tech Tip of the Day</h1>
+                {% endblock %}
             </header>
-            <nav>
-                <p>
-                    <a href="/">Home</a>
-                </p>
-                <p>
-                    <a href="/contact">Contact</a>
-                </p>
-            </nav>
-            <div></div>
+            
+            <div>
+                {% block content %}{% endblock %}
+            </div>
+            
             <footer>
-                <p>
-                    &copy; Copyright 2011 by Norman
-                </p>
+                <p>&copy; Copyright 2011 by Hendrik and Norman</p>
             </footer>
         </div>
     </body>
