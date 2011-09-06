@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.utils.html import strip_tags
 
 
 class Tip(models.Model):
@@ -20,7 +21,8 @@ class Tip(models.Model):
     
     def save(self):
         import markdown
-        self.content = markdown.markdown(self.content_markdown)
+        # Strip tags to ensure it is safe. Then convert markdown to HTML.
+        self.content = markdown.markdown(strip_tags(self.content_markdown))
         super(Tip, self).save()
     
     # Useful: https://code.djangoproject.com/wiki/UsingMarkup

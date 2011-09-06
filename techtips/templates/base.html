@@ -33,46 +33,21 @@
               href="{{ MEDIA_URL }}/css/iphone.css" />
         <link rel="stylesheet" type="text/css" media="handheld" 
               href="{{ MEDIA_URL }}/css/handheld.css" />
-              
-        <script type="text/javascript">
-        $(document).ready(function () {
-            // We have JavaScript.
-            
-            // Change anchors to AJAX
-            $('div.list_item > h2 > a').each(function () {
-                var original_href = $(this).attr('href'); 
-                $(this).attr('href', '#');
-                $(this).click(function () {
-                    // Load list item content asynchronously
-                    $(':parent > div.list_item_content').load(
-                        original_href + 'ajax/'
-                    );
-                    return false;
-                });
-            });
-            
-            // Remove pagination
-            //$('nav.pagination').remove();
-            
-            // Add async content loader at bottom of page
-            // TODO: ...
-        });
-        </script>
     </head>
     <body>
-        <div>
+        <div class="outer">
             <header>
                 {% block header %}
                 <h1>Tech Tip of the Day</h1>
                 {% endblock %}
             </header>
             
-            <div>
+            <div class="content">
                 {% block content %}{% endblock %}
             </div>
             
             <footer>
-                <p>&copy; Copyright 2011 by Hendrik and Norman</p>
+                <p>&copy; Copyright 2011 by Norman Hooper and Hendrik Schoeman</p>
             </footer>
         </div>
     </body>

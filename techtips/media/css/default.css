@@ -1,0 +1,57 @@
+/**
+ *  Colour palette:
+ *      lightsteelblue
+ *      maroon
+ *      darkmagenta
+ *      mintcream
+ *      darkslategray
+ */
+body {
+    margin: 0;
+    text-align: center;    
+    color: darkslategray;
+    background-color: lightsteelblue;
+}
+
+h1 {
+    color: maroon;
+}
+
+a {
+    color: darkmagenta;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+h3 {
+    font-family: sans-serif;
+    font-size: 0.9em;
+    margin-top: -0.6em;
+}
+
+footer {
+    color: maroon;
+    font-size: small;
+}
+
+div.outer {
+    margin: auto;
+    text-align: left;
+    width: 500px;
+    padding: 5px;
+}
+
+.list_item {
+    border-left: 1px solid darkslategray;
+    padding-left: 2px;
+}
+
+.list_item_inner {
+    background-color: mintcream;
+    padding: 1em 1em 2em 1em;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
