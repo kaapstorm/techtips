@@ -3,9 +3,9 @@ from techtips.tips.models import Tip
 
 class TipAdmin(admin.ModelAdmin):
     # List parameters
-    list_display = ('title', 'created_at', 'is_published')
+    list_display = ('title', 'created_at', 'created_by', 'is_published')
     list_editable = ('is_published',)
-    list_filter = ('is_published',)
+    list_filter = ('is_published', 'created_by')
     date_hierarchy = 'created_at'
     search_fields = ('title', 'content_markdown')
     
@@ -21,3 +21,4 @@ class TipAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Tip, TipAdmin)
+

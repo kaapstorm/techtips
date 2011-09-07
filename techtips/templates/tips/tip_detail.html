@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block header %}
-<h1>Tech Tip of the Day</h1>
+<h1><a href="{% url tip_list_view %}">Tech Tip of the Day</a></h1>
 <h2>{{ tip.title }}</h2>
 <h3>{{ tip.created_at|date:"l j M Y" }} | {{ tip.created_by }}</h3>
 {% endblock %}
 
 {% block content %}
-{{ tip.content|safe }}
+<div class="list_item_inner">
+  {{ tip.content|safe }}
+</div>
+<p class="tip_link">[<a href="{% url tip_list_view %}">List</a>]</p>
 {% endblock %}

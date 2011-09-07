@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.utils.html import strip_tags
 
 
 class Tip(models.Model):
@@ -20,13 +19,17 @@ class Tip(models.Model):
         return reverse('tip_detail_view', kwargs={'slug': self.slug})
     
     def save(self):
+        """Converts markdown to safe HTML. HTML tags in Markdown are escaped.
+        """
+        # Useful: https://code.djangoproject.com/wiki/UsingMarkup
+        # See also:
+        # http://pypi.python.org/pypi/django-markupfield/
+        # http://www.martin-geber.com/thought/2007/10/27/markdown-syntax-highlighting-django/
         import markdown
         # Strip tags to ensure it is safe. Then convert markdown to HTML.
-        self.content = markdown.markdown(strip_tags(self.content_markdown))
+        self.content = markdown.markdown(self.content_markdown, 
+                                         safe_mode='escape')
         super(Tip, self).save()
     
-    # Useful: https://code.djangoproject.com/wiki/UsingMarkup
-    # See also:
-    # http://pypi.python.org/pypi/django-markupfield/
-    # http://www.martin-geber.com/thought/2007/10/27/markdown-syntax-highlighting-django/
-    
+    class Meta:
+        ordering = ['-created_at']

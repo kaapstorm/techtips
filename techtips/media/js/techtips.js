@@ -31,15 +31,3 @@ var techtips = function () {
         
     };
 }();
-
-
-$(document).ready(function () {
-    // Change anchors to AJAX
-    $('div.list_item > h2 > a').each(techtips.load_tip);
-    
-    // Remove pagination
-    //$('nav.pagination').remove();
-    
-    // Add async content loader at bottom of page
-    // TODO: ...
-});
