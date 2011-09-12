@@ -1,4 +1,22 @@
 {% extends "base.html" %}
+{% comment %}
+This file is part of Tech Tip of the Day.
+
+Tech Tip of the Day is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Tech Tip of the Day is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
+
+{% endcomment %}
+
 {% block script %}
 <script type="text/javascript"><!--
     
@@ -6,11 +24,13 @@ $(document).ready(function () {
     // Change anchors to AJAX
     $('div.list_item > h2 > a').each(techtips.load_tip);
     
+    {% comment %}
     // Remove pagination
     //$('nav.pagination').remove();
     
     // Add async content loader at bottom of page
     // TODO: ...
+    {% endcomment %}
 });
 
 // -->
@@ -18,6 +38,7 @@ $(document).ready(function () {
 {% endblock %}
 {% block content %}
 
+{% comment %}
 <!-- TODO: ...
 <nav id="top_pagination" class="pagination">
     <ul>
@@ -31,6 +52,7 @@ $(document).ready(function () {
     </ul>
 </nav>
 -->
+{% endcomment %}
 
 <div id="list_items">
     {% for tip in tip_list %}
@@ -49,6 +71,7 @@ $(document).ready(function () {
     <!-- Fetch more asychronously -->
 </div>
 
+{% comment %}
 <!-- TODO: ...
 <nav id="bottom_pagination" class="pagination">
     <ul>
@@ -62,5 +85,6 @@ $(document).ready(function () {
     </ul>
 </nav>
 -->
+{% endcomment %}
 
 {% endblock %}

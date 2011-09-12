@@ -1,55 +1,92 @@
+{% comment %}
+This file is part of Tech Tip of the Day.
+
+Tech Tip of the Day is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Tech Tip of the Day is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
+
+{% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <!-- Force latest IE rendering engine & Chrome Frame -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>{% block title %}Tech Tip of the Day{% endblock %}</title>
-        
-        <meta name="description" content="Daily tips with an emphasis on Linux and Python" />
-        <meta name="viewport" content="width=device-width; initial-scale=1.0" />
-        
-        <!-- TODO: Replace favicon.ico & apple-touch-icon.png -->
-        <link rel="shortcut icon" href="{{ MEDIA_URL }}/favicon.ico" />
-        <link rel="apple-touch-icon" href="{{ MEDIA_URL }}/apple-touch-icon.png" />
-        
-        <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-1.6.2.min.js"></script>
-        <script type="text/javascript" src="{{ MEDIA_URL }}/js/modernizr-2.0.6.js"></script>
-        <script type="text/javascript" src="{{ MEDIA_URL }}/js/techtips.js"></script>
-        {% block script %}{% endblock %}
-        
-        <link rel="stylesheet" type="text/css" media="screen" 
-              href="{{ MEDIA_URL }}/css/default.css" />
-        <link rel="stylesheet" type="text/css" 
-              media="screen and (max-device-width: 1024px) and (orientation: portrait)" 
-              href="{{ MEDIA_URL }}/css/ipad-portrait.css" />
-        <link rel="stylesheet" type="text/css" 
-              media="screen and (max-device-width: 1024px) and (orientation: landscape)" 
-              href="{{ MEDIA_URL }}/css/ipad-landscape.css" />
-        <link rel="stylesheet" type="text/css" 
-              media="screen and (max-device-width: 533px)" 
-              href="{{ MEDIA_URL }}/css/htc_desire.css" />
-        <link rel="stylesheet" type="text/css" 
-              media="screen and (max-device-width: 480px)" 
-              href="{{ MEDIA_URL }}/css/iphone.css" />
-        <link rel="stylesheet" type="text/css" media="handheld" 
-              href="{{ MEDIA_URL }}/css/handheld.css" />
-    </head>
-    <body>
-        <div class="outer">
-            <header>
-                {% block header %}
-                <h1>Tech Tip of the Day</h1>
-                {% endblock %}
-            </header>
-            
-            <div class="content">
-                {% block content %}{% endblock %}
-            </div>
-            
-            <footer>
-                <p>&copy; Copyright 2011 by Norman Hooper and Hendrik Schoeman</p>
-            </footer>
-        </div>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Force latest IE rendering engine & Chrome Frame -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>{% block title %}Tech Tip of the Day{% endblock %}</title>
+    
+    <meta name="description" content="Daily tips with an emphasis on Linux and Python" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+    
+    {% comment %}
+    <!-- TODO: Replace favicon.ico & apple-touch-icon.png -->
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}/favicon.ico" />
+    <link rel="apple-touch-icon" href="{{ MEDIA_URL }}/apple-touch-icon.png" />
+    {% endcomment %}
+    <link rel="alternate" type="application/atom+xml" 
+          title="Tech Tip of the Day Feed" 
+          href="{% url feed %}">
+    
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/modernizr-2.0.6.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/techtips.js"></script>
+    {% block script %}{% endblock %}
+    
+    <link rel="stylesheet" type="text/css" media="screen" 
+          href="{{ MEDIA_URL }}/css/default.css" />
+    <link rel="stylesheet" type="text/css" 
+          media="screen and (max-device-width: 1024px) and (orientation: portrait)" 
+          href="{{ MEDIA_URL }}/css/ipad-portrait.css" />
+    <link rel="stylesheet" type="text/css" 
+          media="screen and (max-device-width: 1024px) and (orientation: landscape)" 
+          href="{{ MEDIA_URL }}/css/ipad-landscape.css" />
+    <link rel="stylesheet" type="text/css" 
+          media="screen and (max-device-width: 533px)" 
+          href="{{ MEDIA_URL }}/css/htc_desire.css" />
+    <link rel="stylesheet" type="text/css" 
+          media="screen and (max-device-width: 480px)" 
+          href="{{ MEDIA_URL }}/css/iphone.css" />
+    <link rel="stylesheet" type="text/css" media="handheld" 
+          href="{{ MEDIA_URL }}/css/handheld.css" />
+  </head>
+  <body>
+    <div class="outer">
+      <header>
+        {% block header %}
+        <h1>Tech Tip of the Day</h1>
+        {% endblock %}
+      </header>
+      
+      <div class="content">
+        {% block content %}{% endblock %}
+      </div>
+      
+      <footer>
+        <p>
+          <em><span xmlns:dct="http://purl.org/dc/terms/" 
+          href="http://purl.org/dc/dcmitype/Text" property="dct:title" 
+          rel="dct:type">Tech Tip of the Day</span></em> by 
+          <span xmlns:cc="http://creativecommons.org/ns#" 
+          property="cc:attributionName" rel="cc:attributionURL">Norman Hooper, 
+          Hendrik Schoeman and other contributors</span> is licensed under a 
+          <a rel="license" 
+          href="http://creativecommons.org/licenses/by-sa/3.0/">Creative
+          Commons Attribution-ShareAlike 3.0 Unported License</a>. 
+
+          The source code of is released under the 
+          GNU Affero General Public License, and is available at 
+          <a href="https://github.com/kaapstorm/techtips">github.com</a>. 
+          
+        </p>
+      </footer>
+    </div>
+  </body>
 </html>
