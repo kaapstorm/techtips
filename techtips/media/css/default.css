@@ -44,7 +44,7 @@ h3 {
 }
 
 footer {
-    color: maroon;
+    padding-top: 2em;
     font-size: small;
 }
 
@@ -53,6 +53,14 @@ div.outer {
     text-align: left;
     width: 500px;
     padding: 5px;
+}
+
+.blurb a {
+    color: darkslategray;
+}
+
+.blurb a:hover {
+    color: darkmagenta;
 }
 
 .list_item {
