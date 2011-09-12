@@ -33,7 +33,7 @@ urlpatterns = patterns('',
         name='tip_detail_ajax_view'),
     # (r'^new/$', add_tip),
     
-    url(r'^feed/$', TechTipsFeed(), 
+    url(r'^feed/atom.xml$', TechTipsFeed(), 
         name='feed'),
 
     (r'^admin/', include(admin.site.urls)),

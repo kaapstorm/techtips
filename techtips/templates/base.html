@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
 
 {% endcomment %}
+{% load absurl %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,15 +26,18 @@ along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
     
     <meta name="description" content="Daily tips with an emphasis on Linux and Python" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0" />
-    
-    {% comment %}
-    <!-- TODO: Replace favicon.ico & apple-touch-icon.png -->
-    <link rel="shortcut icon" href="{{ MEDIA_URL }}/favicon.ico" />
-    <link rel="apple-touch-icon" href="{{ MEDIA_URL }}/apple-touch-icon.png" />
-    {% endcomment %}
+    <!-- Icons -->
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="{{ MEDIA_URL }}/img/lightbulb.png" />
+    <link rel="icon" type="image/png" 
+          sizes="114x114" href="{{ MEDIA_URL }}/img/lightbulb_114x114.png" />
+    <link rel="icon" type="image/png" 
+          sizes="57x57" href="{{ MEDIA_URL }}/img/lightbulb.png" />
+    <link rel="icon" type="image/vnd.microsoft.icon" 
+          sizes="16x16" href="{{ MEDIA_URL }}/img/favicon.ico" />
+    <!-- Atom feed -->
     <link rel="alternate" type="application/atom+xml" 
-          title="Tech Tip of the Day Feed" 
-          href="{% url feed %}">
+          title="Tech Tip of the Day Atom Feed" href="{% absurl feed %}" />
     
     <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}/js/modernizr-2.0.6.js"></script>
@@ -60,6 +64,7 @@ along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
   <body>
     <div class="outer">
       <header>
+        
         {% block header %}
         <h1>Tech Tip of the Day</h1>
         {% endblock %}
@@ -81,10 +86,15 @@ along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
           href="http://creativecommons.org/licenses/by-sa/3.0/">Creative
           Commons Attribution-ShareAlike 3.0 Unported License</a>. 
 
-          The source code of is released under the 
-          GNU Affero General Public License, and is available at 
-          <a href="https://github.com/kaapstorm/techtips">github.com</a>. 
+          The source code is released under the GNU Affero General Public 
+          License, and is available at 
+          <a href="https://github.com/kaapstorm/techtips">github.com</a>.
           
+          The lightbulb icon is by 
+          <a href="http://tango.freedesktop.org/The_People">the people from the
+          Tango! project</a>. The 16x16 icon is from the 
+          <a href="http://www.famfamfam.com/lab/icons/silk/">famfamfam Silk 
+          icon set</a> by Mark James.
         </p>
       </footer>
     </div>

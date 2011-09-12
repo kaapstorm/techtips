@@ -108,6 +108,7 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     
     'techtips.tips',
+    'techtips.tips.templatetags',
 )
 
 # Import local overrides
