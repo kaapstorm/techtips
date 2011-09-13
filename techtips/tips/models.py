@@ -39,10 +39,10 @@ class Tip(models.Model):
         # Useful: https://code.djangoproject.com/wiki/UsingMarkup
         # See also:
         # http://pypi.python.org/pypi/django-markupfield/
-        # http://www.martin-geber.com/thought/2007/10/27/markdown-syntax-highlighting-django/
+        # http://www.freewisdom.org/projects/python-markdown/CodeHilite
         import markdown
-        # Strip tags to ensure it is safe. Then convert markdown to HTML.
-        self.content = markdown.markdown(self.content_markdown, 
+        # Enable extra features. Escape tags.
+        self.content = markdown.markdown(self.content_markdown, ['extra'],
                                          safe_mode='escape')
         super(Tip, self).save()
     
