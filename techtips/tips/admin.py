@@ -31,7 +31,8 @@ class TipAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'created_by')
     
     def save_model(self, request, obj, form, change):
-        obj.created_by = request.user
+        if not change:
+            obj.created_by = request.user
         obj.save()
     
 
