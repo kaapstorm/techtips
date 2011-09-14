@@ -13,7 +13,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
 
+#from unidecode import unidecode
 from django.forms import ModelForm
+from django.template.defaultfilters import slugify
 
 from techtips.tips.models import Tip
 
@@ -24,9 +26,4 @@ class TipForm(ModelForm):
     class Meta:
         model = Tip
         fields = ('title', 'content_markdown')
-    
-    def clean_title(self):
-        # TODO: Populate slug 
-        # TODO: Validate slug unique
-        pass
     

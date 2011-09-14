@@ -16,6 +16,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import mail_managers
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import Context, loader, RequestContext
@@ -30,7 +31,11 @@ class TipListView(ListView):
     context_object_name = 'tip_list'
     
     def get_queryset(self):
-        if self.request.user.is_authenticated(): # TODO: and is_manager()
+        """If the user is a member of the Moderators group, show all tips,
+        otherwise just show published tips.
+        """
+        if self.request.user.is_authenticated() \
+                and self.request.user.groups.filter(name='Moderators').count():
             return Tip.objects.all()
         return Tip.objects.filter(is_published=True)
 
@@ -39,7 +44,10 @@ class TipDetailView(DetailView):
     context_object_name = 'tip'
     
     def get_queryset(self):
-        if self.request.user.is_authenticated(): # TODO: and is_manager()
+        """Allow moderators to see unpublished tips.
+        """
+        if self.request.user.is_authenticated() \
+                and self.request.user.groups.filter(name='Moderators').count():
             return Tip.objects.all()
         return Tip.objects.filter(is_published=True)
 
@@ -52,7 +60,6 @@ def add_tip(request):
     if request.method == 'POST':
         form = TipForm(request.POST)
         if form.is_valid():
-            #if 'submit' in request.POST:
             # Save the submission
             tip = form.save(commit=False)
             tip.created_by = request.user
@@ -68,7 +75,7 @@ def add_tip(request):
             # Confirm submission
             messages.success(request, 
                              'Thank you. Your tip has been submitted.')
-            return HttpResponseRedirect('tip_list_view')
+            return HttpResponseRedirect(reverse('tip_list_view'))
     else:
         form = TipForm()
     return render_to_response('tips/tip_add.html',

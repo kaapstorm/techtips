@@ -13,15 +13,19 @@
 # You should have received a copy of the GNU General Public License
 # along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
 
+import markdown
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
 
 
 class Tip(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
-    content_markdown = models.TextField(help_text='Use Markdown syntax')
+    content_markdown = models.TextField(verbose_name='Content (Markdown-formatted)',
+                                        help_text='Use <a href="http://daringfireball.net/projects/markdown/">Markdown</a> syntax')
     content = models.TextField()
     created_by = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -33,18 +37,25 @@ class Tip(models.Model):
     def get_absolute_url(self):
         return reverse('tip_detail_view', kwargs={'slug': self.slug})
     
-    def save(self):
-        """Converts markdown to safe HTML. HTML tags in Markdown are escaped.
+    def save(self, *args, **kwargs):
+        """Converts markdown to safe HTML, and creates unique slug.
         """
         # Useful: https://code.djangoproject.com/wiki/UsingMarkup
         # See also:
         # http://pypi.python.org/pypi/django-markupfield/
         # http://www.freewisdom.org/projects/python-markdown/CodeHilite
-        import markdown
         # Enable extra features. Escape tags.
         self.content = markdown.markdown(self.content_markdown, ['extra'],
                                          safe_mode='escape')
-        super(Tip, self).save()
+        # Check slug is unique
+        if self.slug is None or len(self.slug) == 0:
+            self.slug = slugify(self.title)
+        initial_slug = self.slug
+        serial = 1
+        while Tip.objects.filter(slug=self.slug).count() > 0:
+            serial += 1
+            self.slug = '%s-%s' % (initial_slug, serial)
+        super(Tip, self).save(*args, **kwargs)
     
     class Meta:
         ordering = ['-created_at']
