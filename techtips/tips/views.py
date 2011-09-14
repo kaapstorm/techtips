@@ -63,10 +63,11 @@ def add_tip(request):
             text_message = t.render(c)
             t = loader.get_template('tips/tip_email.html')
             html_message = t.render(c)
-            mail_managers('New tip submission', text_message, 
+            mail_managers('New tip submission', text_message,
                           fail_silently=True, html_message=html_message)
             # Confirm submission
-            messages.success(request, 'Thank you. Your tip has been submitted.')
+            messages.success(request, 
+                             'Thank you. Your tip has been submitted.')
             return HttpResponseRedirect('tip_list_view')
     else:
         form = TipForm()
