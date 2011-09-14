@@ -19,6 +19,7 @@ from django.core.mail import mail_managers
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import Context, loader, RequestContext
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic import ListView, DetailView
 
 from techtips.tips.forms import TipForm
@@ -44,12 +45,14 @@ class TipDetailView(DetailView):
 
 
 @login_required
+@csrf_protect
 def add_tip(request):
     """Submit a new tip.
     """
     if request.method == 'POST':
         form = TipForm(request.POST)
         if form.is_valid():
+            #if 'submit' in request.POST:
             # Save the submission
             tip = form.save(commit=False)
             tip.created_by = request.user
@@ -60,7 +63,7 @@ def add_tip(request):
             text_message = t.render(c)
             t = loader.get_template('tips/tip_email.html')
             html_message = t.render(c)
-            mail_managers('New submission', text_message, 
+            mail_managers('New tip submission', text_message, 
                           fail_silently=True, html_message=html_message)
             # Confirm submission
             messages.success(request, 'Thank you. Your tip has been submitted.')

@@ -39,6 +39,8 @@ $(document).ready(function () {
 {% block content %}
 
 {% comment %}
+<nav>[<a href="{% url add_tip_view %}">Send Us A Tip</a>]</nav>
+
 <!-- TODO: ...
 <nav id="top_pagination" class="pagination">
     <ul>
@@ -68,7 +70,9 @@ $(document).ready(function () {
     
     {% endfor %}
     
-    <!-- Fetch more asychronously -->
+    {% comment %}
+    <!-- TODO: Fetch more asynchronously -->
+    {% endcomment %}
 </div>
 
 {% comment %}
