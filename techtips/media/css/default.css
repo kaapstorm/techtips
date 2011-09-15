@@ -59,6 +59,10 @@ div.outer {
     padding: 5px;
 }
 
+#accounts_nav {
+    text-align: right;
+}
+
 .blurb a {
     color: darkslategray;
 }

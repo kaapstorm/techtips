@@ -16,9 +16,11 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
+from django.contrib.auth.views import login
 
 from techtips.tips.feeds import TechTipsFeed
-from techtips.tips.views import TipListView, TipDetailView, add_tip
+from techtips.tips.views import TipListView, TipDetailView, add_tip, \
+    register, logout
 
 
 admin.autodiscover()
@@ -36,7 +38,11 @@ urlpatterns = patterns('',
     
     url(r'^feed/atom.xml$', TechTipsFeed(), 
         name='feed'),
-
+                       
+    (r'^accounts/login/$', login),
+    (r'^accounts/logout/$', logout),
+    (r'^accounts/register/$', register),
+    
     (r'^admin/', include(admin.site.urls)),
 )
 

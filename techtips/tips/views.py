@@ -13,8 +13,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib import messages
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import mail_managers
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -50,6 +51,31 @@ class TipDetailView(DetailView):
                 and self.request.user.groups.filter(name='Moderators').count():
             return Tip.objects.all()
         return Tip.objects.filter(is_published=True)
+
+
+def register(request):
+    """Uses standard register form
+    """
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = auth.authenticate(username=request.POST['username'], 
+                                     password=request.POST['password1'])
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse('tip_list_view'))
+    else:
+        form = UserCreationForm()
+    return render_to_response("registration/register.html", 
+                              {'form': form},
+                              context_instance=RequestContext(request))
+
+
+def logout(request):
+    """Logs out and redirects to the tip list.
+    """
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('tip_list_view'))
 
 
 @login_required

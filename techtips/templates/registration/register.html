@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% comment %}
+This file is part of Tech Tip of the Day.
+
+Tech Tip of the Day is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Tech Tip of the Day is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
+
+{% endcomment %}
+
+{% block title %}Tech Tip of the Day - Register{% endblock %}
+
+{% block header %}
+<h1><a href="{% url tip_list_view %}">Tech Tip of the Day</a></h1>
+<h2>Register</h2>
+{% endblock %}
+
+{% block content %}
+<div class="list_item_inner">
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td colspan="2">
+          <input type="submit" name="submit" value="Register" />
+          <a href="{% url tip_list_view %}"><button>Cancel</button></a>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{% endblock %}
