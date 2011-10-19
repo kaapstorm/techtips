@@ -16,11 +16,11 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
-from django.contrib.auth.views import login
+from django.contrib.auth.views import login, password_change
 
 from techtips.tips.feeds import TechTipsFeed
 from techtips.tips.views import TipListView, TipDetailView, add_tip, \
-    register, logout
+    edit_profile, register, logout
 
 
 admin.autodiscover()
@@ -42,6 +42,10 @@ urlpatterns = patterns('',
     (r'^accounts/login/$', login),
     (r'^accounts/logout/$', logout),
     (r'^accounts/register/$', register),
+    (r'^accounts/edit/$', edit_profile),
+    url(r'^accounts/passwd/$', password_change,
+        name='password_change_view',
+        kwargs={'post_change_redirect': '../../'}),
     
     (r'^admin/', include(admin.site.urls)),
 )

@@ -1,3 +1,8 @@
+pre code {
+    /* Android browser does not render scrollbars */
+    overflow: visible;
+}
+
 div.outer {
     margin: auto;
     text-align: left;
@@ -5,3 +10,7 @@ div.outer {
     padding: 5px;
 }
 
+#accounts_nav, #actions_nav {
+    /* Enlarge nav links so that they're easy to tap with a finger. */
+    font-size: 1.2em;
+}

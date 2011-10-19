@@ -23,6 +23,7 @@ var techtips = function () {
     
     // Public
     return {
+        
         /**
          * load_tip loads a techtip asynchronously, and then hides it if the 
          * user click on the title a second time. 
@@ -44,6 +45,20 @@ var techtips = function () {
                 
                 return false;
             });
+        },
+        
+        /**
+         * to_button converts [<a href="#">Text</a>] to a button
+         */
+        to_button: function () {
+            // Get href
+            var href = $(this).children('a').attr('href');
+            // Get text
+            var text = $(this).children('a').html();
+            var button = '\
+<button onclick="document.location.href=\'' + href + '\'; \
+                 return false;">' + text + '</button>';
+            $(this).replaceWith(button);
         }
         
     };

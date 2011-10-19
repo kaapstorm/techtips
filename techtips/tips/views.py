@@ -24,7 +24,7 @@ from django.template import Context, loader, RequestContext
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import ListView, DetailView
 
-from techtips.tips.forms import TipForm
+from techtips.tips.forms import TipForm, UserChangeForm
 from techtips.tips.models import Tip
 
 
@@ -105,5 +105,20 @@ def add_tip(request):
     else:
         form = TipForm()
     return render_to_response('tips/tip_add.html',
+                              {'form': form},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+@csrf_protect
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save(commit=False)
+            return HttpResponseRedirect(reverse('tip_list_view'))
+    else:
+        form = UserChangeForm(instance=request.user)
+    return render_to_response('registration/edit_profile.html',
                               {'form': form},
                               context_instance=RequestContext(request))

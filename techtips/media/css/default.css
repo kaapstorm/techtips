@@ -52,6 +52,26 @@ footer {
     font-size: small;
 }
 
+code {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid lightsteelblue;
+}
+
+pre code {
+    display: block;
+    overflow: auto;
+    padding: 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid lightsteelblue;
+}
+
 div.outer {
     margin: auto;
     text-align: left;
