@@ -19,8 +19,8 @@ from django.contrib import admin
 from django.contrib.auth.views import login, password_change
 
 from techtips.tips.feeds import TechTipsFeed
-from techtips.tips.views import TipListView, TipDetailView, add_tip, \
-    edit_profile, register, logout
+from techtips.tips.views import (TipListView, TipDetailView, add_tip, 
+    profile, edit_profile, register, logout)
 
 
 admin.autodiscover()
@@ -42,7 +42,9 @@ urlpatterns = patterns('',
     (r'^accounts/login/$', login),
     (r'^accounts/logout/$', logout),
     (r'^accounts/register/$', register),
-    (r'^accounts/edit/$', edit_profile),
+    (r'^accounts/profile/$', profile),
+    url(r'^accounts/edit/$', edit_profile,
+        name='edit_profile_view'),
     url(r'^accounts/passwd/$', password_change,
         name='password_change_view',
         kwargs={'post_change_redirect': '../../'}),

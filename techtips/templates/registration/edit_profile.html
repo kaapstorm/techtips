@@ -44,9 +44,10 @@ $(document).ready(function () {
       {{ form.as_table }}
       <tr>
         <td colspan="2">
+          <hr />
           <input type="submit" name="submit" value="Save" />
           <span class="to_button">[<a href="{% url tip_list_view %}">Cancel</a>]</span>
-          <span class="to_button">[<a href="{% url password_change_view %}">Change password</a>]</span>
+          <span class="to_button">[<a href="{% url password_change_view %}">Change Password</a>]</span>
         </td>
       </tr>
     </table>
