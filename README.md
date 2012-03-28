@@ -17,8 +17,6 @@ Requirements
 To do
 -----
 
-  1. Form validation. See comments in tips/forms.py.
-  2. User-contributed tips.
-  3. Comments.
-  4. Tags.
-  
+  1. Comments.
+  2. Tags.
+  3. like / tweet / +1

@@ -13,7 +13,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Tech Tip of the Day.  If not, see <http://www.gnu.org/licenses/>.
 
-#from unidecode import unidecode
 from django.contrib.auth.forms import UserChangeForm as DjangoUserChangeForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
